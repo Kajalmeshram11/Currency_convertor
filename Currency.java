@@ -10,7 +10,7 @@ public class Currency {
     private static final Map<String, String> CURRENCY_SYMBOLS = new HashMap<>();
 
     static {
-        // Populate the map with currency code-symbol pairs
+   
         CURRENCY_SYMBOLS.put("USD", "$");
         CURRENCY_SYMBOLS.put("EUR", "€");
         CURRENCY_SYMBOLS.put("GBP", "£");
@@ -130,20 +130,18 @@ public class Currency {
     }
 
     public static void main(String[] args) {
-        // Step 1: Allow user to choose base and target currencies
+        
         String baseCurrency = getUserInput("Enter the base currency code: ").toUpperCase();
         String targetCurrency = getUserInput("Enter the target currency code: ").toUpperCase();
 
-        // Step 2: Fetch real-time exchange rates from API
+
         double exchangeRate = getExchangeRate(baseCurrency, targetCurrency);
 
-        // Step 3: Take input for the amount to convert
+
         double amount = getAmountToConvert();
 
-        // Step 4: Convert the input amount using the fetched exchange rate
         double convertedAmount = amount * exchangeRate;
 
-        // Step 5: Display the result
         String targetCurrencySymbol = CURRENCY_SYMBOLS.get(targetCurrency);
         System.out.printf("%f %s is equal to %s %.2f%n", amount, baseCurrency, targetCurrencySymbol, convertedAmount);
     }
@@ -181,8 +179,7 @@ public class Currency {
 
                 in.close();
 
-                // Parse the JSON response and get the exchange rate for the target currency
-                // This is a basic example, you might want to use a JSON library for a more robust solution
+               
                 String jsonResponse = response.toString();
                 double rate = Double.parseDouble(jsonResponse.split("\"" + targetCurrency + "\":")[1].split(",")[0]);
 
